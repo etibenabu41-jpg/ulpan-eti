@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#1d5c57">
+<title>מילון עברית בארבע שפות</title>
+<style>
+:root{--ink:#1c2d2a;--muted:#53645f;--paper:#f4f8f5;--card:#fff;--accent:#1d5c57;--line:#dbe7e0}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:Arial,"Noto Sans Hebrew",sans-serif;line-height:1.45}
+header{background:var(--accent);color:#fff;padding:22px 16px 18px;text-align:center}
+h1{font-size:1.55rem;margin:0 0 6px}
+header p{margin:0;font-size:.98rem}
+main{max-width:1000px;margin:auto;padding:14px}
+.tools{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 14px}
+input{font:inherit;padding:12px;border:1px solid #b7cbc1;border-radius:12px;flex:1;min-width:180px;background:#fff}
+button{font:inherit;cursor:pointer}
+.toolbutton{border:0;border-radius:12px;padding:12px 14px;background:#e0eee7;color:#173f39;font-weight:bold}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.word-card{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 2px 6px #153b3010;min-width:0}
+.picture{display:flex;width:100%;min-height:112px;align-items:center;justify-content:center;flex-direction:column;gap:4px;border:0;border-bottom:1px solid var(--line);background:#edf5f0;color:var(--accent)}
+.emoji{font-size:3rem;line-height:1.2}
+.speaker{font-size:.78rem;font-weight:bold}
+.translations{padding:10px}
+.hebrew{font-size:1.35rem;font-weight:bold;text-align:center;color:#174f49;margin:0 0 8px}
+.translations>div:not(.hebrew){display:flex;flex-direction:column;margin-top:7px;overflow-wrap:anywhere;font-size:.95rem}
+.lang{font-size:.68rem;color:var(--muted);font-weight:bold;letter-spacing:.03em}
+.note{font-size:.86rem;color:var(--muted);margin:12px 2px}
+footer{text-align:center;color:var(--muted);padding:16px;font-size:.8rem}
+@media(min-width:680px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}header{padding:28px}}
+@media(min-width:950px){.grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<header>
+  <h1>מִלּוֹן עִבְרִית בְּאַרְבַּע שָׂפוֹת</h1>
+  <p>לוחצים על התמונה ושומעים את המילה בעברית 🔊</p>
+</header>
+<main>
+  <div class="tools">
+    <input id="search" type="search" placeholder="חיפוש מילה בעברית או בשפה אחרת…" aria-label="חיפוש מילה">
+    <button class="toolbutton" type="button" onclick="speakHebrew('שלום')">🔊 בדיקת שמע</button>
+  </div>
+  <section class="grid" id="words">
+
+      <article class="word-card" data-search="חָבֵר חבר friend amigo друг">
+        <button class="picture" type="button" aria-label="השמעת המילה חבר" onclick="speakHebrew('חָבֵר')">
+          <span class="emoji" aria-hidden="true">🤝</span>
+          <span class="speaker">🔊 לחצו לשמיעה</span>
+        </button>
+        <div class="translations">
+          <div class="hebrew" lang="he" dir="rtl">חָבֵר</div>
+          <div><span class="lang">English</span><span>Friend</span></div>
+          <div><span class="lang">Español</span><span>Amigo</span></div>
+          <div><span class="lang">Русский</span><span>Друг</span></div>
+        </div>
+      </article>
+
+      <article class="word-card" data-search="מוֹרֶה מורה teacher profesor учитель">
+        <button class="picture" type="button" aria-label="השמעת המילה מורה" onclick="speakHebrew('מוֹרֶה')">
+          <span class="emoji" aria-hidden="true">👨‍🏫</span>
+          <span class="speaker">🔊 לחצו לשמיעה</span>
+        </button>
+        <div class="translations">
+          <div class="hebrew" lang="he" dir="rtl">מוֹרֶה</div>
+          <div><span class="lang">English</span><span>Teacher</span></div>
+          <div><span class="lang">Español</span><span>Profesor</span></div>
+          <div><span class="lang">Русский</span><span>Учитель</span></div>
+        </div>
+      </article>
+
+      <article class="word-card" data-search="תַּיָּר תייר tourist turista турист">
+        <button class="picture" type="button" aria-label="השמעת המילה תייר" onclick="speakHebrew('תַּיָּר')">
+          <span class="emoji" aria-hidden="true">🧳</span>
+          <span class="speaker">🔊 לחצו לשמיעה</span>
+        </button>
+        <div class="translations">
+          <div class="hebrew" lang="he" dir="rtl">תַּיָּר</div>
+          <div><span class="lang">English</span><span>Tourist</span></div>
+          <div><span class="lang">Español</span><span>Turista</span></div>
+          <div><span class="lang">Русский</span><span>Турист</span></div>
+        </div>
+      </article>
+
+      <article class="word-card" data-search="תַּלְמִיד תלמיד student estudiante ученик">
+        <button class="picture" type="button" aria-label="השמעת המילה תלמיד" onclick="speakHebrew('תַּלְמִיד')">
+          <span class="emoji" aria-hidden="true">🎒</span>
+          <span class="speaker">🔊 לחצו לשמיעה</span>
+        </button>
+        <div class="translations">
+          <div class="hebrew" lang="he" dir="rtl">תַּלְמִיד</div>
+          <div><span class="lang">English</span><span>Student</span></div>
+          <div><span class="lang">Español</span><span>Estudiante</span></div>
+          <div><span class="lang">Русский</span><span>Ученик</span></div>
+        </div>
+      </article>
+
+      <article class="word-card" data-search="בַּיִת בית house / home casa дом">
+        <button class="picture" type="button" aria-label="השמעת המילה בית" onclick="speakHebrew('בַּיִת')">
+          <span class="emoji" aria-hidden="true">🏠</span>
+          <span class="speaker">🔊 לחצו לשמיעה</span>
+        </button>
+        <div class="translations">
+          <div class="hebrew" lang="he" dir="rtl">בַּיִת</div>
+          <div><span class="lang">English</span><span>House / home</span></div>
+          <div><span class="lang">Español</span><span>Casa</span></div>
+          <div><span class="lang">Русский</span><span>Дом</span></div>
+        </div>
+      </article>
+
+      <article class="word-card" data-search="דִּירָה דירה apartment apartamento квартира">
+        <button class="picture" type="button" aria-label="השמעת המילה דירה" onclick="speakHebrew('דִּירָה')">
+          <span class="emoji" aria-hidden="true">🏢</span>
+          <span class="speaker">🔊 לחצו לשמיעה</span>
+        </button>
+        <div class="translations">
+          <div class="hebrew" lang="he" dir="rtl">דִּירָה</div>
+          <div><span class="lang">English</span><span>Apartment</span></div>
+          <div><span class="lang">Español</span><span>Apartamento</span></div>
+          <div><span class="lang">Русский</span><span>Квартира</span></div>
+        </div>
+      </article>
+
+      <article class="word-card" data-search="רְחוֹב רחוב street calle улица">
+        <button class="picture" type="button" aria-label="השמעת המילה רחוב" onclick="speakHebrew('רְחוֹב')">
+          <span class="emoji" aria-hidden="true">🛣️</span>
+          <span class="speaker">🔊 לחצו לשמיעה</span>
+        </button>
+        <div class="translations">
+          <div class="hebrew" lang="he" dir="rtl">רְחוֹב</div>
+          <div><span class="lang">English</span><span>Street</span></div>
+          <div><span class="lang">Español</span><span>Calle</span></div>
+          <div><span class="lang">Русский</span><span>Улица</span></div>
+        </div>
+      </article>
+
+      <article class="word-card" data-search="מַחְבֶּרֶת מחברת notebook cuaderno тетрадь">
+        <button class="picture" type="button" aria-label="השמעת המילה מחברת" onclick="speakHebrew('מַחְבֶּרֶת')">
+          <span class="emoji" aria-hidden="true">📓</span>
+          <span class="speaker">🔊 לחצו לשמיעה</span>
+        </button>
+        <div class="translations">
+          <div class="hebrew" lang="he" dir="rtl">מַחְבֶּרֶת</div>
+          <div><span class="lang">English</span><span>Notebook</span></div>
+          <div><span class="lang">Español</span><span>Cuaderno</span></div>
+          <div><span class="lang">Русский</span><span>Тетрадь</span></div>
+        </div>
+      </article>
+
+      <article class="word-card" data-search="סֵפֶר ספר book libro книга">
+        <button class="picture" type="button" aria-label="השמעת המילה ספר" onclick="speakHebrew('סֵפֶר')">
+          <span class="emoji" aria-hidden="true">📘</span>
+          <span class="speaker">🔊 לחצו לשמיעה</span>
+        </button>
+        <div class="translations">
+          <div class="hebrew" lang="he" dir="rtl">סֵפֶר</div>
+          <div><span class="lang">English</span><span>Book</span></div>
+          <div><span class="lang">Español</span><span>Libro</span></div>
+          <div><span class="lang">Русский</span><span>Книга</span></div>
+        </div>
+      </article>
+
+      <article class="word-card" data-search="סִפּוּר סיפור story historia / cuento рассказ">
+        <button class="picture" type="button" aria-label="השמעת המילה סיפור" onclick="speakHebrew('סִפּוּר')">
+          <span class="emoji" aria-hidden="true">📖</span>
+          <span class="speaker">🔊 לחצו לשמיעה</span>
+        </button>
+        <div class="translations">
+          <div class="hebrew" lang="he" dir="rtl">סִפּוּר</div>
+          <div><span class="lang">English</span><span>Story</span></div>
+          <div><span class="lang">Español</span><span>Historia / cuento</span></div>
+          <div><span class="lang">Русский</span><span>Рассказ</span></div>
+        </div>
+      </article>
+
+      <article class="word-card" data-search="עִיתּוֹן עיתון newspaper periódico газета">
+        <button class="picture" type="button" aria-label="השמעת המילה עיתון" onclick="speakHebrew('עִיתּוֹן')">
+          <span class="emoji" aria-hidden="true">📰</span>
+          <span class="speaker">🔊 לחצו לשמיעה</span>
+        </button>
+        <div class="translations">
+          <div class="hebrew" lang="he" dir="rtl">עִיתּוֹן</div>
+          <div><span class="lang">English</span><span>Newspaper</span></div>
+          <div><span class="lang">Español</span><span>Periódico</span></div>
+          <div><span class="lang">Русский</span><span>Газета</span></div>
+        </div>
+      </article>
+
+      <article class="word-card" data-search="שְׁאֵלָה שאלה question pregunta вопрос">
+        <button class="picture" type="button" aria-label="השמעת המילה שאלה" onclick="speakHebrew('שְׁאֵלָה')">
+          <span class="emoji" aria-hidden="true">❓</span>
+          <span class="speaker">🔊 לחצו לשמיעה</span>
+        </button>
+        <div class="translations">
+          <div class="hebrew" lang="he" dir="rtl">שְׁאֵלָה</div>
+          <div><span class="lang">English</span><span>Question</span></div>
+          <div><span class="lang">Español</span><span>Pregunta</span></div>
+          <div><span class="lang">Русский</span><span>Вопрос</span></div>
+        </div>
+      </article>
+
+      <article class="word-card" data-search="תְּשׁוּבָה תשובה answer respuesta ответ">
+        <button class="picture" type="button" aria-label="השמעת המילה תשובה" onclick="speakHebrew('תְּשׁוּבָה')">
+          <span class="emoji" aria-hidden="true">💬</span>
+          <span class="speaker">🔊 לחצו לשמיעה</span>
+        </button>
+        <div class="translations">
+          <div class="hebrew" lang="he" dir="rtl">תְּשׁוּבָה</div>
+          <div><span class="lang">English</span><span>Answer</span></div>
+          <div><span class="lang">Español</span><span>Respuesta</span></div>
+          <div><span class="lang">Русский</span><span>Ответ</span></div>
+        </div>
+      </article>
+
+      <article class="word-card" data-search="כְּתוֹבֶת כתובת address dirección адрес">
+        <button class="picture" type="button" aria-label="השמעת המילה כתובת" onclick="speakHebrew('כְּתוֹבֶת')">
+          <span class="emoji" aria-hidden="true">📍</span>
+          <span class="speaker">🔊 לחצו לשמיעה</span>
+        </button>
+        <div class="translations">
+          <div class="hebrew" lang="he" dir="rtl">כְּתוֹבֶת</div>
+          <div><span class="lang">English</span><span>Address</span></div>
+          <div><span class="lang">Español</span><span>Dirección</span></div>
+          <div><span class="lang">Русский</span><span>Адрес</span></div>
+        </div>
+      </article>
+
+      <article class="word-card" data-search="מִין — זָכָר זכר sex — male sexo — masculino пол — мужской">
+        <button class="picture" type="button" aria-label="השמעת המילים מין זכר" onclick="speakHebrew('מִין זָכָר')">
+          <span class="emoji" aria-hidden="true">♂️</span>
+          <span class="speaker">🔊 לחצו לשמיעה</span>
+        </button>
+        <div class="translations">
+          <div class="hebrew" lang="he" dir="rtl">מִין — זָכָר</div>
+          <div><span class="lang">English</span><span>Sex — male</span></div>
+          <div><span class="lang">Español</span><span>Sexo — masculino</span></div>
+          <div><span class="lang">Русский</span><span>Пол — мужской</span></div>
+        </div>
+      </article>
+
+      <article class="word-card" data-search="מִין — נְקֵבָה נקבה sex — female sexo — femenino пол — женский">
+        <button class="picture" type="button" aria-label="השמעת המילים מין נקבה" onclick="speakHebrew('מִין נְקֵבָה')">
+          <span class="emoji" aria-hidden="true">♀️</span>
+          <span class="speaker">🔊 לחצו לשמיעה</span>
+        </button>
+        <div class="translations">
+          <div class="hebrew" lang="he" dir="rtl">מִין — נְקֵבָה</div>
+          <div><span class="lang">English</span><span>Sex — female</span></div>
+          <div><span class="lang">Español</span><span>Sexo — femenino</span></div>
+          <div><span class="lang">Русский</span><span>Пол — женский</span></div>
+        </div>
+      </article>
+
+      <article class="word-card" data-search="נָשׂוּי נשוי married (man) casado женат">
+        <button class="picture" type="button" aria-label="השמעת המילה נשוי" onclick="speakHebrew('נָשׂוּי')">
+          <span class="emoji" aria-hidden="true">💍</span>
+          <span class="speaker">🔊 לחצו לשמיעה</span>
+        </button>
+        <div class="translations">
+          <div class="hebrew" lang="he" dir="rtl">נָשׂוּי</div>
+          <div><span class="lang">English</span><span>Married (man)</span></div>
+          <div><span class="lang">Español</span><span>Casado</span></div>
+          <div><span class="lang">Русский</span><span>Женат</span></div>
+        </div>
+      </article>
+
+      <article class="word-card" data-search="רַוָּק רווק single / unmarried (man) soltero холост">
+        <button class="picture" type="button" aria-label="השמעת המילה רווק" onclick="speakHebrew('רַוָּק')">
+          <span class="emoji" aria-hidden="true">🧍</span>
+          <span class="speaker">🔊 לחצו לשמיעה</span>
+        </button>
+        <div class="translations">
+          <div class="hebrew" lang="he" dir="rtl">רַוָּק</div>
+          <div><span class="lang">English</span><span>Single / unmarried (man)</span></div>
+          <div><span class="lang">Español</span><span>Soltero</span></div>
+          <div><span class="lang">Русский</span><span>Холост</span></div>
+        </div>
+      </article>
+
+      <article class="word-card" data-search="גָּרוּשׁ גרוש divorced (man) divorciado разведён">
+        <button class="picture" type="button" aria-label="השמעת המילה גרוש" onclick="speakHebrew('גָּרוּשׁ')">
+          <span class="emoji" aria-hidden="true">📄</span>
+          <span class="speaker">🔊 לחצו לשמיעה</span>
+        </button>
+        <div class="translations">
+          <div class="hebrew" lang="he" dir="rtl">גָּרוּשׁ</div>
+          <div><span class="lang">English</span><span>Divorced (man)</span></div>
+          <div><span class="lang">Español</span><span>Divorciado</span></div>
+          <div><span class="lang">Русский</span><span>Разведён</span></div>
+        </div>
+      </article>
+
+      <article class="word-card" data-search="אַלְמָן אלמן widower viudo вдовец">
+        <button class="picture" type="button" aria-label="השמעת המילה אלמן" onclick="speakHebrew('אַלְמָן')">
+          <span class="emoji" aria-hidden="true">🕊️</span>
+          <span class="speaker">🔊 לחצו לשמיעה</span>
+        </button>
+        <div class="translations">
+          <div class="hebrew" lang="he" dir="rtl">אַלְמָן</div>
+          <div><span class="lang">English</span><span>Widower</span></div>
+          <div><span class="lang">Español</span><span>Viudo</span></div>
+          <div><span class="lang">Русский</span><span>Вдовец</span></div>
+        </div>
+      </article>
+
+      <article class="word-card" data-search="עִיר עיר city ciudad город">
+        <button class="picture" type="button" aria-label="השמעת המילה עיר" onclick="speakHebrew('עִיר')">
+          <span class="emoji" aria-hidden="true">🏙️</span>
+          <span class="speaker">🔊 לחצו לשמיעה</span>
+        </button>
+        <div class="translations">
+          <div class="hebrew" lang="he" dir="rtl">עִיר</div>
+          <div><span class="lang">English</span><span>City</span></div>
+          <div><span class="lang">Español</span><span>Ciudad</span></div>
+          <div><span class="lang">Русский</span><span>Город</span></div>
+        </div>
+      </article>
+
+      <article class="word-card" data-search="קִישּׁוּר קישור link enlace ссылка">
+        <button class="picture" type="button" aria-label="השמעת המילה קישור" onclick="speakHebrew('קִישּׁוּר')">
+          <span class="emoji" aria-hidden="true">🔗</span>
+          <span class="speaker">🔊 לחצו לשמיעה</span>
+        </button>
+        <div class="translations">
+          <div class="hebrew" lang="he" dir="rtl">קִישּׁוּר</div>
+          <div><span class="lang">English</span><span>Link</span></div>
+          <div><span class="lang">Español</span><span>Enlace</span></div>
+          <div><span class="lang">Русский</span><span>Ссылка</span></div>
+        </div>
+      </article>
+
+      <article class="word-card" data-search="שְׁאֵלוֹן שאלון questionnaire cuestionario анкета">
+        <button class="picture" type="button" aria-label="השמעת המילה שאלון" onclick="speakHebrew('שְׁאֵלוֹן')">
+          <span class="emoji" aria-hidden="true">📝</span>
+          <span class="speaker">🔊 לחצו לשמיעה</span>
+        </button>
+        <div class="translations">
+          <div class="hebrew" lang="he" dir="rtl">שְׁאֵלוֹן</div>
+          <div><span class="lang">English</span><span>Questionnaire</span></div>
+          <div><span class="lang">Español</span><span>Cuestionario</span></div>
+          <div><span class="lang">Русский</span><span>Анкета</span></div>
+        </div>
+      </article>
+  </section>
+  <p class="note">השמעת הקול משתמשת בקולות הזמינים במכשיר או בדפדפן. אם לא נשמע קול, נסו לפתוח את הקובץ בדפדפן מעודכן ולוודא שהצליל במכשיר פועל.</p>
+</main>
+<footer>מילון לימודי לעברית, אנגלית, ספרדית ורוסית</footer>
+<script>
+function speakHebrew(word){
+  if(!('speechSynthesis' in window)){alert('הדפדפן הזה אינו תומך בהשמעת קול. נסו Chrome או Safari מעודכן.');return;}
+  window.speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance(word);
+  utterance.lang = 'he-IL';
+  utterance.rate = 0.78;
+  const voices = window.speechSynthesis.getVoices();
+  const hebrewVoice = voices.find(v => v.lang && v.lang.toLowerCase().startsWith('he'));
+  if(hebrewVoice) utterance.voice = hebrewVoice;
+  window.speechSynthesis.speak(utterance);
+}
+document.getElementById('search').addEventListener('input', function(){
+ const q=this.value.trim().toLowerCase();
+ document.querySelectorAll('.word-card').forEach(card=>{
+   card.hidden = !card.dataset.search.toLowerCase().includes(q);
+ });
+});
+</script>
+</body>
+</html>
